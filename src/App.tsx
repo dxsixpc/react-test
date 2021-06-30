@@ -1,7 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import logo from './logo.svg'
+import './App.css'
 
-function App() {
+export interface AppProps {}
+
+const App: React.FC<AppProps> = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,7 +22,11 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export const sum = (a: number, b: number) => {
+  return a + b
+}
+
+export default App
