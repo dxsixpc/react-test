@@ -12,5 +12,6 @@ describe('测试日历util方法', () => {
 
   it('测试', () => {
     expect(sum(1, 2)).toBe(3)
+    // expect(sum(1, 2)).toBeWithinRange();
   })
 })
