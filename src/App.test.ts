@@ -1,17 +1,50 @@
 import { sum } from './App'
 
-describe('测试日历util方法', () => {
-  // it('输入url链接，返回链接里的参数对象', () => {
-  //   const url =
-  //     'http://test.epub360.com/v3/manage/book/532pea/preview?-build=1&page_6e736b18f7331b5a7a84766c147bb94120210629141034323=Objective%3D8e69e9fbfcb54ed3978be219a00c3f96%26Activity%3D3f1b95d1ca044432a71ddf224ebe6280';
-  //   expect(GetUrlRequest(url)).toEqual({
-  //     '-build': expect.any(String),
-  //     page_6e736b18f7331b5a7a84766c147bb94120210629141034323: expect.any(String)
-  //   });
-  // });
+// 声明自定义的匹配器
+declare global {
+  namespace jest {
+    interface Matchers<R> {
+      toBeWithinRange(a: number, b: number): R
+    }
+    interface Expect {
+      toBeWithinRange(a: number, b: number): void
+    }
+    interface InverseAsymmetricMatchers {
+      toBeWithinRange(a: number, b: number): void
+    }
+  }
+}
 
+describe('测试日历util方法', () => {
   it('测试', () => {
     expect(sum(1, 2)).toBe(3)
-    // expect(sum(1, 2)).toBeWithinRange();
+  })
+})
+
+expect.extend({
+  toBeWithinRange(received, floor, ceiling) {
+    const pass = received >= floor && received <= ceiling
+    if (pass) {
+      return {
+        message: () =>
+          `expected ${received} not to be within range ${floor} - ${ceiling}`,
+        pass: true,
+      }
+    } else {
+      return {
+        message: () =>
+          `expected ${received} to be within range ${floor} - ${ceiling}`,
+        pass: false,
+      }
+    }
+  },
+})
+
+test('numeric ranges', () => {
+  expect(sum(45, 50)).toBeWithinRange(90, 110)
+  expect(101).not.toBeWithinRange(0, 100)
+  expect({ apples: 6, bananas: 3 }).toEqual({
+    apples: expect.toBeWithinRange(1, 10),
+    bananas: expect.not.toBeWithinRange(11, 20),
   })
 })
