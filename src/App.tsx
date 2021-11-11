@@ -2,7 +2,8 @@ import React from 'react';
 import { Wrapper } from './Styled';
 import { Form, Button } from 'antd';
 // import { FormRichText } from './components';
-import { FormRichText } from '@21epub/epub-form-components';
+import { FormRichText } from 'dxsix-form-components';
+// import { FormRichText } from '@21epub/epub-form-components';
 
 // import { npmBig } from './white';
 

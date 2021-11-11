@@ -14,7 +14,7 @@
     "axios": "^0.21.1",
     "braft-convert": "^2.0.0",
     "draft-convert": "^2.0.0",
-    "dxsix-form-components": "^0.1.2",
+    "dxsix-form-components": "^0.1.7",
     "file-loader": "6.1.1",
     "file-saver": "^2.0.5",
     "lodash": "^4.17.21",
@@ -115,5 +115,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
